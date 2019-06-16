@@ -25,12 +25,12 @@ export class AppComponent {
   public chartLegend: boolean = true;
   public colors: any[] = [{ backgroundColor: '#5491DA' }, { backgroundColor: '#E74C3C' }, { backgroundColor: '#82E0AA' }, { backgroundColor: '#E5E7E9' }]
 
-
   constructor(public signalRService: SignalRService, private http: HttpClient) { }
 
   ngOnInit() {
     this.signalRService.startConnection();
     this.signalRService.addTransferChartDataListener();
+    this.signalRService.addBroadcastChartDataListener();
     this.startHttpRequest();
   }
 
@@ -39,6 +39,10 @@ export class AppComponent {
       .subscribe(res => {
         console.log(res);
       })
+  }
+
+  public chartClicked = (event) => {
+    this.signalRService.broadcastChartData();
   }
 
 }
