@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RealTimeCharts_Server.Classes
 {
@@ -13,7 +10,7 @@ namespace RealTimeCharts_Server.Classes
         private AutoResetEvent _autoResetEvent;
         private Action _action;
 
-        public DateTime TimerStarted { get; }
+        private DateTime TimerStarted { get; }
 
         public TimerManager(Action action)
         {
