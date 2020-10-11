@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using RealTimeCharts_Server.HubConfig;
 
@@ -26,8 +27,8 @@ namespace RealTimeCharts_Server
                     .AllowCredentials());
             });
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSignalR();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,8 @@ namespace RealTimeCharts_Server
             }
 
             app.UseCors("CorsPolicy");
+
+            app.UseMvc();
 
             app.UseSignalR(routes =>
             {
